@@ -29,22 +29,13 @@
 
 /* Iframe Header */
 .iframe-header {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: var(--spacing-sm) var(--spacing);
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-color);
-  min-height: 50px;
-}
-
-.iframe-header {
     background: var(--bg-primary);
     padding: 8px 16px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 8px;
+    border: none;
 }
 
 .iframe-container.fullscreen .iframe-header {
@@ -68,31 +59,29 @@
 
 .iframe-fullscreen,
 .iframe-close {
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg-primary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius-md);
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: all var(--transition);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-primary);
+    border: none;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .iframe-fullscreen:hover {
-  background: var(--bg-tertiary);
-  border-color: var(--border-hover);
-  color: var(--text-primary);
-  transform: scale(1.05);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    transform: scale(1.05);
 }
 
 .iframe-close:hover {
-  background: var(--error-light);
-  border-color: var(--error-color);
-  color: var(--error-color);
-  transform: scale(1.05);
+    background: #fee2e2;
+    color: #dc2626;
+    transform: scale(1.05);
 }
 
 .iframe-fullscreen svg,
@@ -116,6 +105,19 @@
     min-height: 600px;
     border: none;
     background: var(--bg-primary);
+}
+
+.iframe-container.fullscreen .everything-iframe {
+    height: calc(100vh - 50px);
+}
+
+/* Fullscreen body state */
+body.fullscreen-active {
+    overflow: hidden;
+}
+
+body.fullscreen-active .search-bar-container {
+    display: none;
 }
 
 .everything-iframe.loading {

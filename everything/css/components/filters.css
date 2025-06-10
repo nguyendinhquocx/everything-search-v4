@@ -31,7 +31,6 @@
 
 .quick-item:active {
     transform: scale(0.95);
-    background: var(--primary-light);
 }
 
 .quick-item svg {
@@ -46,11 +45,13 @@
 }
 
 .quick-item.active {
-    background: var(--primary-light);
+    background: var(--primary-color);
+    border-radius: var(--radius-sm);
+    transform: scale(1.05);
 }
 
 .quick-item.active svg {
-    fill: var(--accent-color);
+    fill: white;
 }
 
 /* Date Filters */
@@ -111,6 +112,17 @@
     background: var(--bg-primary);
     color: var(--text-primary);
     width: 120px;
+    transition: all 0.2s ease;
+}
+
+.custom-date-range input[type="date"]:hover {
+    border-color: var(--border-hover);
+}
+
+.custom-date-range input[type="date"]:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 0 2px var(--primary-light);
 }
 
 .date-separator {
@@ -187,6 +199,13 @@
     align-items: center;
     justify-content: center;
     background: var(--bg-primary);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.drive-checkbox:hover {
+    border-color: var(--accent-color);
+    background: var(--primary-light);
 }
 
 .drive-checkbox.active {

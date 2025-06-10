@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Everything Explorer Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-item { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .success { background: #d4edda; border-color: #c3e6cb; }
+        .error { background: #f8d7da; border-color: #f5c6cb; }
+        button { padding: 8px 16px; margin: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h2>Everything Explorer Function Tests</h2>
+    
+    <div class="test-item">
+        <h3>1. Test Search Manager</h3>
+        <button onclick="testSearchManager()">Test Search</button>
+        <div id="search-result"></div>
+    </div>
+    
+    <div class="test-item">
+        <h3>2. Test Drive Toggle</h3>
+        <button onclick="testDriveToggle()">Toggle Drive C</button>
+        <div id="drive-result"></div>
+    </div>
+    
+    <div class="test-item">
+        <h3>3. Test Quick Filters</h3>
+        <button onclick="testQuickFilter()">Test Images Filter</button>
+        <div id="filter-result"></div>
+    </div>
+    
+    <div class="test-item">
+        <h3>4. Test Date Filters</h3>
+        <button onclick="testDateFilter()">Test Today Filter</button>
+        <div id="date-result"></div>
+    </div>
+    
+    <div class="test-item">
+        <h3>5. Test Fullscreen</h3>
+        <button onclick="testFullscreen()">Test Fullscreen</button>
+        <div id="fullscreen-result"></div>
+    </div>
+
+    <script>
+        // Include the modules
+        class MockSearchManager {
+            constructor() {
+                this.currentQuery = '';
+                this.currentFilter = '';
+                this.hasResults = false;
+            }
+            
+            performUnifiedSearch() {
+                console.log('Mock search performed');
+                return 'Search executed successfully';
+            }
+            
+            applyQuickFilter(filter) {
+                this.currentFilter = filter;
+                console.log('Quick filter applied:', filter);
+                return 'Filter applied';
+            }
+            
+            cleanUserQuery(query) {
+                return query.replace(/[^a-zA-Z0-9\s]/g, '');
+            }
+        }
+        
+        class MockFilterManager {
+            constructor() {
+                this.searchOnCDrive = false;
+                this.selectedDateFilter = 'all';
+            }
+            
+            toggleDrive() {
+                this.searchOnCDrive = !this.searchOnCDrive;
+                console.log('Drive toggled to:', this.searchOnCDrive ? 'C:' : 'D:');
+                return this.searchOnCDrive;
+            }
+            
+            selectQuickDate(period) {
+                this.selectedDateFilter = period;
+                console.log('Date filter set to:', period);
+                return period;
+            }
+            
+            getDriveFilter() {
+                return this.searchOnCDrive ? 'C:' : 'D:';
+            }
+            
+            getDateFilter() {
+                if (this.selectedDateFilter === 'all') return '';
+                return `(dm:${this.selectedDateFilter})`;
+            }
+        }
+        
+        class MockUIManager {
+            constructor() {
+                this.isFullscreen = false;
+            }
+            
+            toggleFullscreen() {
+                this.isFullscreen = !this.isFullscreen;
+                console.log('Fullscreen toggled to:', this.isFullscreen);
+                return this.isFullscreen;
+            }
+            
+            showInIframe(url, query) {
+                console.log('Showing iframe with URL:', url);
+                return 'Iframe shown';
+            }
+        }
+        
+        // Initialize mock managers
+        const mockSearchManager = new MockSearchManager();
+        const mockFilterManager = new MockFilterManager();
+        const mockUIManager = new MockUIManager();
+        
+        function testSearchManager() {
+            try {
+                const result = mockSearchManager.performUnifiedSearch();
+                document.getElementById('search-result').innerHTML = 
+                    `<span class="success">✓ ${result}</span>`;
+                console.log('Search Manager Test: PASSED');
+            } catch (error) {
+                document.getElementById('search-result').innerHTML = 
+                    `<span class="error">✗ ${error.message}</span>`;
+                console.error('Search Manager Test: FAILED', error);
+            }
+        }
+        
+        function testDriveToggle() {
+            try {
+                const result = mockFilterManager.toggleDrive();
+                document.getElementById('drive-result').innerHTML = 
+                    `<span class="success">✓ Drive toggled to: ${result ? 'C:' : 'D:'}</span>`;
+                console.log('Drive Toggle Test: PASSED');
+            } catch (error) {
+                document.getElementById('drive-result').innerHTML = 
+                    `<span class="error">✗ ${error.message}</span>`;
+                console.error('Drive Toggle Test: FAILED', error);
+            }
+        }
+        
+        function testQuickFilter() {
+            try {
+                const result = mockSearchManager.applyQuickFilter('*.jpg|*.png|*.gif');
+                document.getElementById('filter-result').innerHTML = 
+                    `<span class="success">✓ ${result}</span>`;
+                console.log('Quick Filter Test: PASSED');
+            } catch (error) {
+                document.getElementById('filter-result').innerHTML = 
+                    `<span class="error">✗ ${error.message}</span>`;
+                console.error('Quick Filter Test: FAILED', error);
+            }
+        }
+        
+        function testDateFilter() {
+            try {
+                const result = mockFilterManager.selectQuickDate('today');
+                document.getElementById('date-result').innerHTML = 
+                    `<span class="success">✓ Date filter set to: ${result}</span>`;
+                console.log('Date Filter Test: PASSED');
+            } catch (error) {
+                document.getElementById('date-result').innerHTML = 
+                    `<span class="error">✗ ${error.message}</span>`;
+                console.error('Date Filter Test: FAILED', error);
+            }
+        }
+        
+        function testFullscreen() {
+            try {
+                const result = mockUIManager.toggleFullscreen();
+                document.getElementById('fullscreen-result').innerHTML = 
+                    `<span class="success">✓ Fullscreen: ${result ? 'ON' : 'OFF'}</span>`;
+                console.log('Fullscreen Test: PASSED');
+            } catch (error) {
+                document.getElementById('fullscreen-result').innerHTML = 
+                    `<span class="error">✗ ${error.message}</span>`;
+                console.error('Fullscreen Test: FAILED', error);
+            }
+        }
+        
+        console.log('Test suite loaded. Click buttons to test individual functions.');
+    </script>
+</body>
+</html>

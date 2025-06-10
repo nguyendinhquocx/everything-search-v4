@@ -27,9 +27,26 @@ class EverythingExplorer {
     updateSearchTitle() {
         const searchInput = document.getElementById('searchInput');
         searchInput.title = 'Enter: Tìm kiếm hoặc Convert URL | Ctrl+Enter: Tìm Google';
-    }
+    }    bindEvents() {
+        // Search input event handling
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    console.log('Enter key pressed, performing search');
+                    window.searchManager.performUnifiedSearch();
+                } else if (e.ctrlKey && e.key === 'Enter') {
+                    e.preventDefault();
+                    const query = searchInput.value.trim();
+                    if (query) {
+                        const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                        window.open(googleUrl, '_blank');
+                    }
+                }
+            });
+        }
 
-    bindEvents() {
         // Quick filter buttons
         const quickImages = document.getElementById('quick-images');
         if (quickImages) {
@@ -50,9 +67,7 @@ class EverythingExplorer {
             quickDocuments.addEventListener('click', () => {
                 window.searchManager.applyQuickFilter('*.doc|*.pdf|*.txt|*.docx');
             });
-        }
-
-        const quickFolders = document.getElementById('quick-folders');
+        }        const quickFolders = document.getElementById('quick-folders');
         if (quickFolders) {
             quickFolders.addEventListener('click', () => {
                 window.searchManager.applyQuickFilter('folder:');
@@ -67,18 +82,46 @@ class EverythingExplorer {
             });
         });
 
-        // Apply custom date button
-        const applyDateBtn = document.getElementById('applyDateBtn');
-        if (applyDateBtn) {
-            applyDateBtn.addEventListener('click', () => {
-                window.filterManager.applyCustomDate();
-            });
+        // Auto-apply custom date range when dates are selected
+        const startDateInput = document.getElementById('startDate');
+        const endDateInput = document.getElementById('endDate');
+        
+        if (startDateInput && endDateInput) {
+            const handleDateChange = () => {
+                const startDate = startDateInput.value;
+                const endDate = endDateInput.value;
+                
+                console.log('Date changed:', { startDate, endDate });
+                
+                if (startDate && endDate) {
+                    window.filterManager.applyCustomDate();
+                }
+            };
+            
+            startDateInput.addEventListener('change', handleDateChange);
+            endDateInput.addEventListener('change', handleDateChange);
+            startDateInput.addEventListener('input', handleDateChange);
+            endDateInput.addEventListener('input', handleDateChange);
         }
 
-        // Drive selector
+        // Drive selector - fix event handling
         const driveOption = document.getElementById('driveOption');
+        const driveCheckbox = document.getElementById('driveC');
+        
         if (driveOption) {
-            driveOption.addEventListener('click', () => {
+            driveOption.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Drive option clicked');
+                window.filterManager.toggleDrive();
+            });
+        }
+        
+        if (driveCheckbox) {
+            driveCheckbox.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Drive checkbox clicked');
                 window.filterManager.toggleDrive();
             });
         }
@@ -86,14 +129,18 @@ class EverythingExplorer {
         // Iframe controls
         const fullscreenBtn = document.getElementById('fullscreenBtn');
         if (fullscreenBtn) {
-            fullscreenBtn.addEventListener('click', () => {
+            fullscreenBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 window.uiManager.toggleFullscreen();
             });
         }
 
         const closeBtn = document.getElementById('closeBtn');
         if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
+            closeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 window.uiManager.closeIframe();
             });
         }

@@ -66,52 +66,69 @@ class FilterManager {
         if (!dateValue) return '';
         
         return `(dm:${dateValue}|dc:${dateValue}|da:${dateValue})`;
-    }
-
-    toggleDrive() {
+    }    toggleDrive() {
         this.searchOnCDrive = !this.searchOnCDrive;
+        console.log('Drive toggled. Now searching on C:', this.searchOnCDrive);
         
         const checkbox = document.getElementById('driveC');
-        const driveOption = checkbox.closest('.drive-option');
+        const driveOption = document.getElementById('driveOption');
         
-        if (this.searchOnCDrive) {
-            checkbox.classList.add('active');
-            driveOption.classList.add('active');
+        if (checkbox) {
+            if (this.searchOnCDrive) {
+                checkbox.classList.add('active');
+                console.log('Added active class to checkbox');
+            } else {
+                checkbox.classList.remove('active');
+                console.log('Removed active class from checkbox');
+            }
         } else {
-            checkbox.classList.remove('active');
-            driveOption.classList.remove('active');
+            console.error('Drive checkbox element not found');
         }
         
-        if (window.searchManager.hasResults) {
+        if (driveOption) {
+            if (this.searchOnCDrive) {
+                driveOption.classList.add('active');
+            } else {
+                driveOption.classList.remove('active');
+            }
+        } else {
+            console.error('Drive option element not found');
+        }
+        
+        // Always trigger search when drive selection changes
+        if (window.searchManager.hasResults || document.getElementById('searchInput').value.trim()) {
             window.searchManager.performUnifiedSearch();
         }
     }
 
     getDriveFilter() {
         return this.searchOnCDrive ? 'C:' : 'D:';
-    }
-
-    applyCustomDate() {
+    }    applyCustomDate() {
         const startDate = document.getElementById('startDate').value;
         const endDate = document.getElementById('endDate').value;
+        
+        console.log('Applying custom date:', { startDate, endDate });
         
         if (startDate && endDate) {
             this.selectedDateFilter = 'custom';
             this.customDateRange = `${startDate}..${endDate}`;
             
-            // Update display
-            const displayText = `${this.formatInputDate(startDate)} - ${this.formatInputDate(endDate)}`;
-            document.getElementById('customDateDisplay').textContent = displayText;
+            console.log('Custom date range set:', this.customDateRange);
             
-            // Update active state
+            // Update active state - remove active from other date options
             document.querySelectorAll('.date-option').forEach(option => {
                 option.classList.remove('active');
             });
-            document.querySelector('[data-period="custom"]').classList.add('active');
             
-            if (window.searchManager.hasResults) {
+            // Trigger search
+            if (window.searchManager.hasResults || document.getElementById('searchInput').value.trim()) {
+                console.log('Triggering search with custom date');
                 window.searchManager.performUnifiedSearch();
+            } else {
+                console.log('No search query or results to apply date filter to');
             }
+        } else {
+            console.log('Incomplete date range, not applying filter');
         }
     }
 

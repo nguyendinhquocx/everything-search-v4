@@ -47,32 +47,40 @@ class UIManager {
         
         window.searchManager.hasResults = false;
         window.searchManager.resetQuickFilter();
-    }
-
-    toggleFullscreen() {
+    }    toggleFullscreen() {
         const container = document.getElementById('iframeContainer');
         const fullscreenBtn = document.getElementById('fullscreenBtn');
+        
+        // Check if iframe container is visible
+        if (!container || container.style.display === 'none') {
+            console.log('Cannot toggle fullscreen: iframe not visible');
+            return;
+        }
+        
         const expandIcon = fullscreenBtn.querySelector('.expand-icon');
         const collapseIcon = fullscreenBtn.querySelector('.collapse-icon');
         
         if (!this.isFullscreen) {
             container.classList.add('fullscreen');
             document.body.classList.add('fullscreen-active');
-            expandIcon.style.display = 'none';
-            collapseIcon.style.display = 'block';
+            if (expandIcon) expandIcon.style.display = 'none';
+            if (collapseIcon) collapseIcon.style.display = 'block';
             fullscreenBtn.title = 'Thoát toàn màn hình';
             this.isFullscreen = true;
+            console.log('Entered fullscreen mode');
         } else {
             container.classList.remove('fullscreen');
             document.body.classList.remove('fullscreen-active');
-            expandIcon.style.display = 'block';
-            collapseIcon.style.display = 'none';
+            if (expandIcon) expandIcon.style.display = 'block';
+            if (collapseIcon) collapseIcon.style.display = 'none';
             fullscreenBtn.title = 'Toàn màn hình';
             this.isFullscreen = false;
+            console.log('Exited fullscreen mode');
         }
     }
 
     updateQuickFilterUI(activeFilter) {
+        // Reset all active states
         document.querySelectorAll('.quick-item').forEach(item => {
             item.classList.remove('active');
         });
@@ -85,7 +93,10 @@ class UIManager {
             else if (activeFilter.includes('folder:')) targetId = 'quick-folders';
             
             if (targetId) {
-                document.getElementById(targetId).classList.add('active');
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.classList.add('active');
+                }
             }
         }
     }

@@ -23,12 +23,19 @@ class SearchManager {
     }    performUnifiedSearch() {
         const query = document.getElementById('searchInput').value.trim();
         
+        console.log('=== performUnifiedSearch called ===');
+        console.log('Raw query:', query);
+        console.log('Current filter:', this.currentFilter);
+        console.log('Has results:', this.hasResults);
+        
         if (!query && !this.currentFilter) {
+            console.log('No query and no filter, closing iframe');
             window.uiManager.closeIframe();
             return;
         }
         
         this.currentQuery = this.cleanUserQuery(query);
+        console.log('Cleaned query:', this.currentQuery);
         
         let searchParts = [];
         
@@ -36,37 +43,45 @@ class SearchManager {
         const driveFilter = window.filterManager.getDriveFilter();
         if (driveFilter) {
             searchParts.push(driveFilter);
+            console.log('Added drive filter:', driveFilter);
         }
         
         // Add date filter
         const dateFilter = window.filterManager.getDateFilter();
         if (dateFilter) {
             searchParts.push(dateFilter);
+            console.log('Added date filter:', dateFilter);
         }
         
         // Add current quick filter
         if (this.currentFilter) {
             searchParts.push(this.currentFilter);
+            console.log('Added quick filter:', this.currentFilter);
         }
         
         // Add user search query
         if (this.currentQuery.trim()) {
             searchParts.push(this.currentQuery.trim());
+            console.log('Added user query:', this.currentQuery.trim());
         }
         
         const finalQuery = searchParts.join(' ');
+        console.log('Final search query:', finalQuery);
         
         if (!finalQuery.trim()) {
+            console.log('Final query is empty, closing iframe');
             window.uiManager.closeIframe();
             return;
         }
         
-        console.log('Final Search Query:', finalQuery);
-        
         const searchUrl = `http://localhost:8080/?s=${encodeURIComponent(finalQuery)}`;
+        console.log('Search URL:', searchUrl);
+        
         window.uiManager.showInIframe(searchUrl, finalQuery);
         this.hasResults = true;
-    }    applyQuickFilter(filter) {
+        
+        console.log('=== performUnifiedSearch completed ===');
+    }applyQuickFilter(filter) {
         this.currentFilter = filter;
         window.uiManager.updateQuickFilterUI(filter);
         this.performUnifiedSearch();
