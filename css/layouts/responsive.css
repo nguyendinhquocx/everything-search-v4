@@ -1,0 +1,207 @@
+/* Responsive Design */
+
+/* Mobile First Approach */
+.container {
+  max-width: 100%;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+  
+  .search-bar {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .quick-filters {
+    display: flex;
+  }
+  
+  .date-filters {
+    display: flex;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+/* Extra extra large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+/* Mobile specific styles */
+@media (max-width: 767px) {
+  .container {
+    padding: var(--spacing);
+  }
+  
+  .search-bar {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .search-input-section {
+    width: 100%;
+  }
+  
+  .quick-filters {
+    order: 3;
+    justify-content: center;
+  }
+  
+  .date-filters {
+    order: 2;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-xs);
+  }
+  
+  .custom-date-range {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .drive-selector {
+    order: 4;
+  }
+  
+  /* Hide labels on mobile */
+  .date-option {
+    min-width: auto;
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+  
+  .iframe-container.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: var(--z-modal);
+  }
+}
+
+/* Tablet specific styles */
+@media (min-width: 768px) and (max-width: 991px) {
+  .search-bar {
+    flex-wrap: wrap;
+  }
+  
+  .search-input-section {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .quick-filters,
+  .date-filters {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+/* Desktop specific styles */
+@media (min-width: 992px) {
+  .search-bar {
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+  
+  .search-input-section {
+    flex: 2;
+    min-width: 400px;
+  }
+  
+  .quick-filters {
+    flex: 1;
+    justify-content: center;
+  }
+  
+  .date-filters {
+    flex: 2;
+    justify-content: flex-end;
+  }
+  
+  .drive-selector {
+    flex: 0 0 auto;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) {
+  .search-icon svg,
+  .quick-item svg {
+    transform: translateZ(0);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  :root {
+    --border-color: #000000;
+    --text-secondary: #000000;
+  }
+  
+  .search-bar {
+    border: 2px solid #000000;
+  }
+  
+  .quick-item,
+  .date-option {
+    border: 1px solid #000000;
+  }
+}
+
+/* Dark mode preference */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --bg-quaternary: #475569;
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-tertiary: #64748b;
+    --text-placeholder: #475569;
+    
+    --border-color: #334155;
+    --border-hover: #475569;
+  }
+}

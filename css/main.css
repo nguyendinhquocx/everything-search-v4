@@ -1,0 +1,295 @@
+/* Everything Search V4 - Main CSS Entry Point
+ * Author: nguyendinhquocx
+ * Version: 4.0
+ * Updated: 2025-06-10
+ */
+
+/* ==========================================================================
+   Base Styles - Foundation
+   ========================================================================== */
+
+/* CSS Reset and Normalize */
+@import url('./base/reset.css');
+
+/* CSS Custom Properties (Variables) */
+@import url('./base/variables.css');
+
+/* Typography System */
+@import url('./base/typography.css');
+
+/* ==========================================================================
+   Layout Styles - Structure
+   ========================================================================== */
+
+/* Main Container and Grid System */
+@import url('./layouts/container.css');
+
+/* Responsive Design and Media Queries */
+@import url('./layouts/responsive.css');
+
+/* ==========================================================================
+   Component Styles - UI Elements
+   ========================================================================== */
+
+/* Search Bar Component */
+@import url('./components/search-bar.css');
+
+/* Filter Components (Quick filters, Date filters, Drive selector) */
+@import url('./components/filters.css');
+
+/* Iframe Container Component */
+@import url('./components/iframe.css');
+
+/* Modal Component (URL Converter) */
+@import url('./components/modal.css');
+
+/* Toast Notification Component */
+@import url('./components/toast.css');
+
+/* ==========================================================================
+   Theme Styles - Optional
+   ========================================================================== */
+
+/* Light Theme (Default) - Already included in variables.css */
+
+/* Dark Theme - Uncomment to enable dark theme by default */
+/* @import url('./themes/dark.css'); */
+
+/* ==========================================================================
+   Utility Classes - Helpers
+   ========================================================================== */
+
+/* Additional utility classes that don't belong to specific components */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.pointer-events-auto {
+  pointer-events: auto;
+}
+
+.select-none {
+  user-select: none;
+}
+
+.select-text {
+  user-select: text;
+}
+
+.select-all {
+  user-select: all;
+}
+
+/* Focus styles for accessibility */
+.focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Animation utilities */
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+  /* Hide interactive elements when printing */
+  .search-bar-container,
+  .iframe-header,
+  .modal-overlay,
+  .toast {
+    display: none !important;
+  }
+  
+  /* Adjust layout for print */
+  .container {
+    background: white !important;
+    padding: 0 !important;
+  }
+  
+  .iframe-container {
+    box-shadow: none !important;
+    border: 1px solid #000 !important;
+  }
+  
+  /* Ensure text is black for print */
+  * {
+    color: #000 !important;
+    background: transparent !important;
+  }
+}
+
+/* ==========================================================================
+   Performance Optimizations
+   ========================================================================== */
+
+/* Enable hardware acceleration for smooth animations */
+.search-bar,
+.quick-item,
+.date-option,
+.iframe-container,
+.modal-content,
+.toast {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Optimize font rendering */
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   Browser Compatibility
+   ========================================================================== */
+
+/* Fallbacks for older browsers */
+@supports not (display: flex) {
+  .search-bar {
+    display: block;
+  }
+  
+  .search-bar > * {
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+@supports not (backdrop-filter: blur(8px)) {
+  .toast {
+    background: var(--bg-primary);
+  }
+}
+
+/* ==========================================================================
+   Development Helpers - Remove in production
+   ========================================================================== */
+
+/* Uncomment for development debugging */
+/*
+.debug * {
+  outline: 1px solid red !important;
+}
+
+.debug-grid {
+  background-image: 
+    linear-gradient(rgba(255, 0, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+*/
+
+/* ==========================================================================
+   Custom Scrollbar Styles
+   ========================================================================== */
+
+/* Webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius-sm);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: var(--border-radius-sm);
+  transition: background var(--transition);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-hover);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--bg-secondary);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) var(--bg-secondary);
+}
+
+/* ==========================================================================
+   Component Load Order Information
+   
+   This file imports CSS in the following order:
+   1. Base styles (reset, variables, typography)
+   2. Layout styles (container, responsive)
+   3. Component styles (search-bar, filters, iframe, modal, toast)
+   4. Utility classes and helpers
+   
+   This order ensures:
+   - Base styles are applied first
+   - Layout structure is established
+   - Components inherit from base styles
+   - Utilities can override component styles when needed
+   ========================================================================== */
