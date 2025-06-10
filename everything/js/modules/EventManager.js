@@ -18,14 +18,15 @@ class EventManager {
         // Global keyboard shortcuts
         document.addEventListener('keydown', (e) => {
             this.handleGlobalKeydown(e);
-        });
-
-        // Close modal on overlay click
-        document.getElementById('urlConverterModal').addEventListener('click', (e) => {
-            if (e.target === e.currentTarget) {
-                window.urlConverter.closeUrlConverter();
-            }
-        });
+        });        // Close modal on overlay click (only if modal exists)
+        const urlConverterModal = document.getElementById('urlConverterModal');
+        if (urlConverterModal) {
+            urlConverterModal.addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) {
+                    window.urlConverter.closeUrlConverter();
+                }
+            });
+        }
     }
 
     handleSearchKeypress(e) {

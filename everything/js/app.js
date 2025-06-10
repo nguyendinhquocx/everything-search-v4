@@ -1,6 +1,7 @@
 // Main application entry point
 class EverythingExplorer {
     constructor() {
+        window.everythingApp = this;
         this.init();
     }
 
@@ -30,21 +31,33 @@ class EverythingExplorer {
 
     bindEvents() {
         // Quick filter buttons
-        document.getElementById('quick-images').addEventListener('click', () => {
-            window.searchManager.applyQuickFilter('*.jpg|*.png|*.gif|*.webp');
-        });
+        const quickImages = document.getElementById('quick-images');
+        if (quickImages) {
+            quickImages.addEventListener('click', () => {
+                window.searchManager.applyQuickFilter('*.jpg|*.png|*.gif|*.webp');
+            });
+        }
 
-        document.getElementById('quick-media').addEventListener('click', () => {
-            window.searchManager.applyQuickFilter('*.mp3|*.mp4|*.avi|*.mkv');
-        });
+        const quickMedia = document.getElementById('quick-media');
+        if (quickMedia) {
+            quickMedia.addEventListener('click', () => {
+                window.searchManager.applyQuickFilter('*.mp3|*.mp4|*.avi|*.mkv');
+            });
+        }
 
-        document.getElementById('quick-documents').addEventListener('click', () => {
-            window.searchManager.applyQuickFilter('*.doc|*.pdf|*.txt|*.docx');
-        });
+        const quickDocuments = document.getElementById('quick-documents');
+        if (quickDocuments) {
+            quickDocuments.addEventListener('click', () => {
+                window.searchManager.applyQuickFilter('*.doc|*.pdf|*.txt|*.docx');
+            });
+        }
 
-        document.getElementById('quick-folders').addEventListener('click', () => {
-            window.searchManager.applyQuickFilter('folder:');
-        });
+        const quickFolders = document.getElementById('quick-folders');
+        if (quickFolders) {
+            quickFolders.addEventListener('click', () => {
+                window.searchManager.applyQuickFilter('folder:');
+            });
+        }
 
         // Date filter buttons
         document.querySelectorAll('.date-option').forEach(btn => {
@@ -55,36 +68,61 @@ class EverythingExplorer {
         });
 
         // Apply custom date button
-        document.getElementById('applyDateBtn').addEventListener('click', () => {
-            window.filterManager.applyCustomDate();
-        });
+        const applyDateBtn = document.getElementById('applyDateBtn');
+        if (applyDateBtn) {
+            applyDateBtn.addEventListener('click', () => {
+                window.filterManager.applyCustomDate();
+            });
+        }
 
         // Drive selector
-        document.getElementById('driveOption').addEventListener('click', () => {
-            window.filterManager.toggleDrive();
-        });
+        const driveOption = document.getElementById('driveOption');
+        if (driveOption) {
+            driveOption.addEventListener('click', () => {
+                window.filterManager.toggleDrive();
+            });
+        }
 
         // Iframe controls
-        document.getElementById('fullscreenBtn').addEventListener('click', () => {
-            window.uiManager.toggleFullscreen();
-        });
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        if (fullscreenBtn) {
+            fullscreenBtn.addEventListener('click', () => {
+                window.uiManager.toggleFullscreen();
+            });
+        }
 
-        document.getElementById('closeBtn').addEventListener('click', () => {
-            window.uiManager.closeIframe();
-        });
+        const closeBtn = document.getElementById('closeBtn');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                window.uiManager.closeIframe();
+            });
+        }
 
-        // URL Converter modal
-        document.getElementById('modalCloseBtn').addEventListener('click', () => {
-            window.urlConverter.closeUrlConverter();
-        });
+        // URL Converter modal (only if elements exist)
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+        if (modalCloseBtn) {
+            modalCloseBtn.addEventListener('click', () => {
+                window.urlConverter.closeUrlConverter();
+            });
+        }
 
-        document.getElementById('pasteBtn').addEventListener('click', () => {
-            window.urlConverter.pasteFromClipboard();
-        });
+        const pasteBtn = document.getElementById('pasteBtn');
+        if (pasteBtn) {
+            pasteBtn.addEventListener('click', () => {
+                window.urlConverter.pasteFromClipboard();
+            });
+        }
     }
 }
 
 // Initialize app when page loads
 window.addEventListener('load', () => {
     new EverythingExplorer();
+});
+
+// Also try DOMContentLoaded as backup
+document.addEventListener('DOMContentLoaded', () => {
+    if (!window.everythingApp) {
+        window.everythingApp = new EverythingExplorer();
+    }
 });

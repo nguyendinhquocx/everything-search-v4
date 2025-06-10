@@ -1,6 +1,6 @@
 :root {
-  /* Original Variables from styles.css */
-  --primary-color: #000000;
+  /* Original Variables from styles.css */  --primary-color: #000000;
+  --primary-light: rgba(37, 99, 235, 0.1);
   --secondary-color: #f7f7f8;
   --accent-color: #2563eb;
   --success-color: #10b981;
@@ -8,8 +8,10 @@
   --text-primary: #000000;
   --text-secondary: #676767;
   --text-muted: #9aa0a6;
+  --text-placeholder: #9aa0a6;
   --bg-primary: #ffffff;
   --bg-secondary: #f7f7f8;
+  --bg-tertiary: #f1f5f9;
   --radius: 12px;
   --radius-sm: 6px;
   --radius-full: 24px;

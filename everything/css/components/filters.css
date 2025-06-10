@@ -19,12 +19,34 @@
     cursor: pointer;
     border-radius: var(--radius-sm);
     transition: all 0.2s ease;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.quick-item:hover {
+    background: var(--bg-secondary);
+    transform: scale(1.05);
+}
+
+.quick-item:active {
+    transform: scale(0.95);
+    background: var(--primary-light);
 }
 
 .quick-item svg {
     width: 18px;
     height: 18px;
     fill: var(--text-muted);
+    transition: fill 0.2s ease;
+}
+
+.quick-item:hover svg {
+    fill: var(--text-primary);
+}
+
+.quick-item.active {
+    background: var(--primary-light);
 }
 
 .quick-item.active svg {
@@ -50,10 +72,25 @@
     color: var(--text-muted);
     transition: all 0.2s ease;
     white-space: nowrap;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.date-option:hover {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+}
+
+.date-option:active {
+    transform: translateY(0);
 }
 
 .date-option.active {
     color: var(--accent-color);
+    background: var(--primary-light);
+    font-weight: 600;
 }
 
 /* Custom Date Range */
@@ -94,6 +131,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.2s ease;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.apply-date-btn:hover {
+    background: var(--accent-color);
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.3);
+}
+
+.apply-date-btn:active {
+    transform: scale(0.95);
 }
 
 /* Drive Selector */
@@ -113,6 +164,18 @@
     cursor: pointer;
     padding: 4px 8px;
     border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.drive-option:hover {
+    background: var(--bg-secondary);
+}
+
+.drive-option:active {
+    transform: scale(0.98);
 }
 
 .drive-checkbox {

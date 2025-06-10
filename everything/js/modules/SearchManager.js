@@ -20,9 +20,7 @@ class SearchManager {
         cleaned = cleaned.replace(/\s+/g, ' ').trim();
         
         return cleaned;
-    }
-
-    performUnifiedSearch() {
+    }    performUnifiedSearch() {
         const query = document.getElementById('searchInput').value.trim();
         
         if (!query && !this.currentFilter) {
@@ -68,9 +66,7 @@ class SearchManager {
         const searchUrl = `http://localhost:8080/?s=${encodeURIComponent(finalQuery)}`;
         window.uiManager.showInIframe(searchUrl, finalQuery);
         this.hasResults = true;
-    }
-
-    applyQuickFilter(filter) {
+    }    applyQuickFilter(filter) {
         this.currentFilter = filter;
         window.uiManager.updateQuickFilterUI(filter);
         this.performUnifiedSearch();
