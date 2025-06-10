@@ -1,0 +1,114 @@
+/* Responsive Design */
+
+@media (max-width: 1200px) {
+    .search-bar {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    
+    .search-input-section {
+        min-width: 250px;
+    }
+    
+    .date-filters {
+        order: 3;
+        flex-basis: 100%;
+        justify-content: flex-start;
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 1px solid var(--border-color);
+    }
+    
+    .custom-date-range {
+        margin-left: 8px;
+        padding-left: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 12px;
+    }
+    
+    .search-bar {
+        padding: 10px 12px;
+        gap: 8px;
+    }
+    
+    .search-input-section {
+        min-width: 200px;
+    }
+    
+    .quick-filters {
+        gap: 4px;
+    }
+    
+    .quick-item {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .quick-item svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .date-option {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+    
+    .custom-date-range input[type="date"] {
+        width: 100px;
+        padding: 3px 6px;
+        font-size: 11px;
+    }
+    
+    .drive-option span {
+        font-size: 12px;
+    }
+    
+    .iframe-container {
+        margin-left: calc(50% - 50vw + 12px);
+        width: calc(100vw - 24px);
+    }
+    
+    .iframe-container.fullscreen {
+        margin-left: 0;
+        width: 100vw;
+    }
+    
+    .everything-iframe {
+        height: calc(100vh - 180px);
+        min-height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-bar {
+        padding: 8px 10px;
+    }
+    
+    .search-input-section {
+        min-width: 150px;
+    }
+    
+    .date-filters {
+        gap: 4px;
+    }
+    
+    .date-option {
+        padding: 3px 6px;
+        font-size: 11px;
+    }
+    
+    .custom-date-range {
+        flex-direction: column;
+        gap: 2px;
+        align-items: flex-start;
+    }
+    
+    .custom-date-range input[type="date"] {
+        width: 90px;
+    }
+}

@@ -150,6 +150,41 @@
   }
 }
 
+/* Additional utility classes */
+.show {
+    display: block !important;
+}
+
+.hide {
+    display: none !important;
+}
+
+/* Hover effects */
+.quick-item:hover {
+    background: var(--bg-secondary);
+}
+
+.date-option:hover {
+    background: var(--bg-secondary);
+}
+
+.apply-date-btn:hover {
+    background: var(--primary-color);
+}
+
+.iframe-fullscreen:hover,
+.iframe-close:hover {
+    background: var(--bg-secondary);
+}
+
+.modal-close:hover {
+    background: var(--bg-secondary);
+}
+
+.paste-btn:hover {
+    background: var(--bg-secondary);
+}
+
 /* ==========================================================================
    Print Styles
    ========================================================================== */

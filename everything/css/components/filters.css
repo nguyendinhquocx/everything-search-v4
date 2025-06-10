@@ -1,0 +1,154 @@
+/* Filter Components */
+
+/* Quick Filter Icons */
+.quick-filters {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.quick-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+}
+
+.quick-item svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--text-muted);
+}
+
+.quick-item.active svg {
+    fill: var(--accent-color);
+}
+
+/* Date Filters */
+.date-filters {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.date-option {
+    padding: 6px 12px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.date-option.active {
+    color: var(--accent-color);
+}
+
+/* Custom Date Range */
+.custom-date-range {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 12px;
+    padding-left: 12px;
+    border-left: 1px solid var(--border-color);
+}
+
+.custom-date-range input[type="date"] {
+    padding: 4px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    width: 120px;
+}
+
+.date-separator {
+    color: var(--text-muted);
+    font-size: 12px;
+    margin: 0 2px;
+}
+
+.apply-date-btn {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: var(--accent-color);
+    color: white;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Drive Selector */
+.drive-selector {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-left: 12px;
+    padding-left: 12px;
+    border-left: 1px solid var(--border-color);
+}
+
+.drive-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+}
+
+.drive-checkbox {
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-primary);
+}
+
+.drive-checkbox.active {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.check-icon {
+    width: 10px;
+    height: 10px;
+    fill: white;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.drive-checkbox.active .check-icon {
+    opacity: 1;
+}
+
+.drive-option span {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.drive-option.active span {
+    color: var(--accent-color);
+}

@@ -1,8 +1,57 @@
 /* Search Bar Component */
+
+/* Main Search Bar Container */
 .search-bar-container {
-  width: 100%;
-  max-width: 1200px;
-  margin-bottom: var(--spacing-xl);
+    padding: 20px 0;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    padding: 12px 20px;
+    gap: 16px;
+    width: 100%;
+}
+
+/* Search Input Section */
+.search-input-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 300px;
+}
+
+.search-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.search-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--text-muted);
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background: transparent;
+    color: var(--text-primary);
+    min-width: 0;
+}
+
+.search-input::placeholder {
+    color: var(--text-muted);
 }
 
 .search-bar {

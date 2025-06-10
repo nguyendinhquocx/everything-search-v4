@@ -1,34 +1,30 @@
 /* Iframe Container Component */
+
+/* Results iframe */
 .iframe-container {
-  display: none;
-  width: 100%;
-  max-width: 1200px;
-  height: 70vh;
-  background: var(--bg-primary);
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-xl);
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-  position: relative;
-  transition: all var(--transition-slow);
+    background: var(--bg-primary);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 8px 0;
+    display: none;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    max-width: none;
+    border: 1px solid var(--border-color);
 }
 
-.iframe-container.show {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Fullscreen mode */
 .iframe-container.fullscreen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  max-width: none;
-  border-radius: 0;
-  z-index: var(--z-modal);
-  border: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    border: none;
 }
 
 /* Iframe Header */
@@ -42,10 +38,32 @@
   min-height: 50px;
 }
 
+.iframe-header {
+    background: var(--bg-primary);
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.iframe-container.fullscreen .iframe-header {
+    position: sticky;
+    top: 0;
+    z-index: 1001;
+    background: var(--bg-primary);
+}
+
 .iframe-actions {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
+}
+
+.iframe-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .iframe-fullscreen,
@@ -84,13 +102,20 @@
   fill: currentColor;
 }
 
-/* Iframe */
 .everything-iframe {
   flex: 1;
   width: 100%;
   border: none;
   background: var(--bg-primary);
   transition: opacity var(--transition);
+}
+
+.everything-iframe {
+    width: 100%;
+    height: calc(100vh - 200px);
+    min-height: 600px;
+    border: none;
+    background: var(--bg-primary);
 }
 
 .everything-iframe.loading {

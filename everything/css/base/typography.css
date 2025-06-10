@@ -1,13 +1,9 @@
 /* Typography Styles */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  font-size: var(--font-size);
-  font-weight: var(--font-weight-normal);
-  line-height: var(--line-height-normal);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg-primary);
   color: var(--text-primary);
-  background-color: var(--bg-primary);
+  line-height: 1.6;
 }
 
 /* Headings */
